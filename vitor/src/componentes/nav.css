@@ -1,0 +1,226 @@
+header {
+    padding: 20px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #9D6155;
+    padding: 20px 40px;
+}
+
+.nav-docabecalho {
+    display: flex;
+    gap: 20px;
+    background-color: #E7D0D0;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+/* BARRA DE PESQUISA MELHORADA */
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-input {
+    width: 300px;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid #E7D0D0;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    color: var(--marrom-escuro);
+    background-color: var(--branco);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--rosa-escuro);
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #E7D0D0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-bar {
+    position: absolute;
+    bottom: -2px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background-color: var(--rosa-escuro);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+/* Efeitos hover na barra de pesquisa */
+.search-container:hover .search-icon {
+    color: var(--rosa-escuro);
+}
+
+.search-container:hover .search-bar {
+    transform: scaleX(1);
+}
+
+.search-input:focus + .search-icon {
+    color: var(--rosa-escuro);
+}
+
+.search-input:focus ~ .search-bar {
+    transform: scaleX(1);
+}
+
+/* Logo e ícones */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    position: relative;
+    right: 100px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+    
+}
+
+.logo-img img {
+    width: 300px;
+    height: auto;
+  
+  
+}
+
+.fa-user, .fa-bag-shopping {
+    font-size: 24px;
+    color: var(--marrom-escuro);
+    cursor: pointer;
+    transition: color 0.3s ease;
+   
+}
+
+.fa-user:hover, .fa-bag-shopping:hover {
+    color: var(--rosa-escuro);
+}
+
+/* Navegação moderna */
+.modern-nav {
+    display: flex;
+    gap: 5px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.modern-nav a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 22px;
+    position: relative;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.modern-nav a:hover {
+    background-color: #f3f3f3;
+    transform: translateY(-3px);
+}
+
+.modern-nav a.active {
+    background-color: #e74c3c;
+    color: white;
+    box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3);
+}
+
+.modern-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modern-nav a:hover::before {
+    opacity: 1;
+    bottom: -5px;
+}
+
+/* Dropdown moderno */
+.modern-dropdown {
+    position: relative;
+}
+
+.modern-dropdown-content {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    width: 280px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    transform-origin: top center;
+    transform: translateX(-50%) scale(0.95);
+    z-index: 1000;
+}
+
+.modern-dropdown:hover .modern-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+
+}
+
+.modern-dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    margin: 4px 0;
+    border-radius: 8px;
+    color: #555;
+    transition: all 0.2s ease;
+
+}
+
+.modern-dropdown-content a:hover {
+    background-color: #f8f8f8;
+    color: #e74c3c;
+    padding-left: 20px;
+
+}
+
+.dropdown-indicator {
+    display: inline-block;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+    font-size: 10px;
+
+}
+
+.modern-dropdown:hover .dropdown-indicator {
+    transform: rotate(180deg);
+    text-decoration: none;
+}
