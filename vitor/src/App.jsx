@@ -2,17 +2,19 @@ import React from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 
 import ConfeitariaDoGatinho from "./paginas/ConfeitariaDoGatinho";
-import Login from "./paginas/Login";
+import Login from "./componentes/Usuarios/Login";
 import ListarUsuarios from "./paginas/Usuarios/ListarUsuarios";
 import CadastrarUsuarios from "./paginas/Usuarios/CadastrarUsuarios";
 import EditarUsuarios from "./paginas/Usuarios/EditarUsuarios";
+import Sacola from "./paginas/Sacola";
 import logo from './assets/logo.png'; // importe a logo corretamente
+import CadastrarUsuario from "./paginas/Usuarios/CadastrarUsuarios";
 
 const PaginaNaoEncontrada = () => (
   <div className="text-center py-5">
     <h2>Página não encontrada</h2>
     <p>A página que você está procurando não existe.</p>
-    <Link to="/" className="btn btn-primary">Voltar ao Login</Link>
+    <Link to="/" className="btn btn-primary">Voltar a Home</Link>
   </div>
 );
 
@@ -44,6 +46,21 @@ const App = () => {
 
             {/* Remova ou defina setShowLogin se quiser usar */}
             {/* <i className="fa-regular fa-user" onClick={() => setShowLogin(true)}></i> */}
+                      <button className="btn-sacola" aria-label="Adicionar à sacola">
+                        <FiShoppingBag size={24} />
+                      </button>
+                      <button className="btn-curtir" aria-label="Curtir">
+                        <FaHeart size={24} color="red" />
+                      </button>
+                  <Link to="/login">
+                  <button className="btn-pagina" aria-label="Adicionar à sacola">Ir para Login</button>
+                        <FiShoppingBag size={24} />
+                  </Link>
+
+                  <Link to="/sacola">
+                 <button>Ir para Sacola</button>
+                  </Link> 
+
             <i className="fa-solid fa-bag-shopping"></i>
           </div>
         </header>
@@ -59,7 +76,7 @@ const App = () => {
                 <span className="dropdown-indicator">▼</span>
               </a>
               <div className="modern-dropdown-content">
-                <a href="#">Pratos Chef</a>
+                <a href="#">Pratos do Chef</a>
                 <a href="#">Especiais da Casa</a>
                 <a href="#">Menu Degustação</a>
                 <a href="#">Vinhos Selecionados</a>
@@ -126,8 +143,9 @@ const App = () => {
 
       <div className="container mt-4">
         <Routes>
-          <Route path="/home" element={<ConfeitariaDoGatinho />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<ConfeitariaDoGatinho />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<CadastrarUsuario />} />         
           <Route path="/usuarios" element={<ListarUsuarios />} />
           <Route path="/usuarios/cadastrar" element={<CadastrarUsuarios />} />
           <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />

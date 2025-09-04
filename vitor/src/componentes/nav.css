@@ -6,15 +6,9 @@ header {
     align-items: center;
     border: 1px solid #9D6155;
     padding: 20px 40px;
+    
 }
 
-.nav-docabecalho {
-    display: flex;
-    gap: 20px;
-    background-color: #E7D0D0;
-    justify-content: center;
-    padding: 15px 0;
-}
 
 /* BARRA DE PESQUISA MELHORADA */
 .search-container {

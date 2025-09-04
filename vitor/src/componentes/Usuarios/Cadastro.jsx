@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:3000/usuarios";
 
-const UsuarioFormCadastrar = () => {
+const Cadastro = () => {
     const navegar = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -67,4 +67,4 @@ const UsuarioFormCadastrar = () => {
     );
 };
 
-export default UsuarioFormCadastrar;
+export default Cadastro;

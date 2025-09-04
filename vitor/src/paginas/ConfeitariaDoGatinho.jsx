@@ -1,3 +1,5 @@
+import { FiShoppingBag } from 'react-icons/fi';
+import { FaHeart } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -78,7 +80,7 @@ const navegar = useNavigate();
           <img src="https://cdn-icons-png.flaticon.com/512/102/102649.png" alt="segurança" />
         </section>
     
-        <h2>Carrossel de Produtos</h2>
+        <h2>Mais Vendidos</h2>
         <div className="carousel-wrapper">
           <button className="carousel-btn" aria-label="Anterior" disabled>◀</button>
           <div className="carousel-container">
@@ -86,33 +88,74 @@ const navegar = useNavigate();
               <img src="https://via.placeholder.com/200x150" alt="Produto 1" />
               <h3>Produto 1</h3>
               <p>Descrição do produto 1</p>
+               <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
             </div>
             <div className="product-card">
               <img src="https://via.placeholder.com/200x150" alt="Produto 2" />
               <h3>Produto 2</h3>
               <p>Descrição do produto 2</p>
+               <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
             </div>
             <div className="product-card">
               <img src="https://via.placeholder.com/200x150" alt="Produto 3" />
               <h3>Produto 3</h3>
               <p>Descrição do produto 3</p>
+               <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
             </div>
             <div className="product-card">
               <img src="https://via.placeholder.com/200x150" alt="Produto 4" />
               <h3>Produto 4</h3>
               <p>Descrição do produto 4</p>
+               <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
             </div>
             <div className="product-card">
               <img src="https://via.placeholder.com/200x150" alt="Produto 5" />
               <h3>Produto 5</h3>
               <p>Descrição do produto 5</p>
+               <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
             </div>
           </div>
           <button className="carousel-btn" aria-label="Próximo">▶</button>
         </div>
         
         <section className="menu-section">
-          <h2 className="section-title">Mais Vendidos</h2>
+          <h2 className="section-title" id="cardapio">Conheça um pouco do nosso cardápio</h2>
+          <p>Todos os nossos produtos são feitos artesanalmente com ingredientes frescos e de alta qualidade.</p>
           <div className="menu-items">
             <div className="menu-card">
               <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8a1b76a5-4f20-4ef9-920a-d45af2d0bf9f.png" alt="Cupcake decorado com chantilly rosa e decoração de patinha de gatinho" className="menu-img" />
@@ -120,6 +163,16 @@ const navegar = useNavigate();
                 <h3 className="menu-title">Cupcake de Gatinho</h3>
                 <p className="menu-desc">Delicioso cupcake de baunilha com cobertura de chantilly e decoração temática.</p>
                 <p className="menu-price">R$ 8,90</p>
+                        <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
+
+                
               </div>
             </div>
             
@@ -129,6 +182,14 @@ const navegar = useNavigate();
                 <h3 className="menu-title">Brownie Especial</h3>
                 <p className="menu-desc">Brownie de chocolate meio amargo com nozes e um toque de canela.</p>
                 <p className="menu-price">R$ 12,50</p>
+                <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
               </div>
             </div>
             
@@ -138,14 +199,21 @@ const navegar = useNavigate();
                 <h3 className="menu-title">Brigadeiro do Gato</h3>
                 <p className="menu-desc">Nosso clássico brigadeiro gourmet com chocolate 70% e opções de cobertura.</p>
                 <p className="menu-price">R$ 6,90</p>
+                <div className="menu-icons" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button className="btn-sacola" aria-label="Adicionar à sacola">
+            <FiShoppingBag size={24} />
+          </button>
+          <button className="btn-curtir" aria-label="Curtir">
+            <FaHeart size={24} color="red" />
+          </button>
+        </div>
               </div>
             </div>
           </div>
         </section>
         
         <section className="menu-section">
-          <h2 className="section-title" id="cardapio">Conheça um pouco do nosso cardápio</h2>
-          <p>Todos os nossos produtos são feitos artesanalmente com ingredientes frescos e de alta qualidade.</p>
+
           <div className="menu-items">
             <div className="menu-card" style={{background: '#E7D0D0'}}>
               <img src="https://www.kideliciasalgados.com.br/wp-content/uploads/2019/11/empada_frango_kidelicia.png" className="menu-img" alt="Empada de Frango" />
