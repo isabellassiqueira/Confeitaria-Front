@@ -4,8 +4,30 @@ import axios from 'axios'
 
 
 const Sacola = () =>{
-    
     const navegar = useNavigate();
+    
+      const [email, setEmail] = useState('');
+      const [senha, setSenha] = useState('');
+      const [erro, setErro] = useState('');
+    
+      const acessar = async () => {
+        try {
+          const resposta = await fetch("http://localhost:3000/usuarios/login", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, senha })
+          });
+    
+          if (resposta.status === 200) {
+            navegar("/");
+          } else {
+            setErro("Email ou senha inválido");
+          }
+        } catch (err) {
+          console.error(err);
+          setErro("ERRO: " + err.message);
+        }
+      };
     return (
         <div className="container mt-5 d-flex flex-column align-items-center">
             <h2 className="mb-4">Login</h2>

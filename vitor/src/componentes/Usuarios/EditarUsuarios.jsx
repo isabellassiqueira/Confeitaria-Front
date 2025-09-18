@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import UsuarioFormEditar from "../../../../vitor/src/componentes/Usuarios/UsuarioFormEditar";
+import UsuarioFormEditar from "./UsuarioFormEditar";
 
 const API_URL = "http://localhost:3000/usuarios";
 

@@ -30,7 +30,7 @@ function Navbar({ sair }) {
 
         <div className="nav-docabecalho">
           <nav>
-            <Link to="#inicio" className="active">Início</Link>
+            <Link to="/" className="active">Início</Link>
 
             <div className="modern-dropdown">
               <Link to="#cardapio">

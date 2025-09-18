@@ -1,32 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Login = () => {
   const navegar = useNavigate();
-
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
 
-  const acessar = async () => {
-    try {
-      const resposta = await fetch("http://localhost:3000/usuarios/login", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, senha })
-      });
+  const acessar = async (e) => {
+  e.preventDefault();
+  try {
+    const resposta = await fetch('http://localhost:3000/api/users/login', {
+      method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, senha})
+    })
 
-      if (resposta.status === 200) {
-        navegar("/");
-      } else {
-        setErro("Email ou senha inválido");
-      }
-    } catch (err) {
-      console.error(err);
-      setErro("ERRO: " + err.message);
+    if (resposta.status === 200) {
+      // Login OK
+      navegar("/"); // redireciona para a página inicial
+    } else if (resposta.status === 401) {
+      setErro("Email ou senha inválido");
+    } else {
+      setErro("Erro inesperado");
     }
-  };
-  
+  } catch (err) {
+    console.error(err);
+    setErro("ERRO: " + err.message);
+  }
+};
+
   const cadastrar = () => {
     navegar("/cadastro");
   }
@@ -63,14 +67,13 @@ const Login = () => {
         </div>
       )}
       <div style={{ display: 'flex', gap: '10px' }}>
-        {/* <button onClick={cadastrar} className="btn btn-success" style={{background:"blue" }}>Cadastrar</button> */}
-   <button onClick={acessar} type="button" className="btn btn-primary">
-        Acessar
-      </button>
+<form onSubmit={acessar} className="container mt-5 d-flex flex-column align-items-center">
+    <button type="submit" className="btn btn-primary">Acessar</button>
+  </form>
 
       
       </div>
-              <p>Caso não tenha a conta, crie <a href="" onClick={cadastrar}>Clique aqui</a></p>
+              <p>Caso não tenha a conta,<a href="" onClick={cadastrar}> clique aqui</a></p>
 
      
     

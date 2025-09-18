@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:3000/usuarios";
+const API_URL = "http://localhost:3000/api/users";
 
 const Cadastro = () => {
     const navegar = useNavigate();
@@ -12,10 +12,7 @@ const Cadastro = () => {
     const enviarUsuario = async (e) => {
         e.preventDefault();
 
-        const novoUsuario = {
-            email,
-            senha
-        };
+        const novoUsuario = { email, senha };
 
         try {
             const resposta = await fetch(API_URL, {
@@ -25,14 +22,14 @@ const Cadastro = () => {
             });
 
             if (!resposta.ok) {
-                throw new Error("Erro ao cadastrar usuário.");
+                const erroData = await resposta.json();
+                throw new Error(erroData.message || "Erro ao cadastrar usuário.");
             }
 
             alert("Usuário cadastrado com sucesso!");
-            navegar("/usuarios");
+            navegar("/usuarios/listar");
         } catch (erro) {
-            console.error("Erro ao cadastrar usuário:", erro);
-            alert("Erro ao cadastrar usuário.");
+            alert("Erro ao cadastrar usuário");
         }
     };
 

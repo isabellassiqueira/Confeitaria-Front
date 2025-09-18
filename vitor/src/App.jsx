@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { FiShoppingBag, FiUser  } from 'react-icons/fi';
 
 import ConfeitariaDoGatinho from "./paginas/ConfeitariaDoGatinho";
 import Login from "./componentes/Usuarios/Login";
-import ListarUsuarios from "./paginas/Usuarios/ListarUsuarios";
-import CadastrarUsuarios from "./paginas/Usuarios/CadastrarUsuarios";
-import EditarUsuarios from "./paginas/Usuarios/EditarUsuarios";
-import Sacola from "./paginas/Sacola";
-import logo from './assets/logo.png'; // importe a logo corretamente
-import CadastrarUsuario from "./paginas/Usuarios/CadastrarUsuarios";
+import ListarUsuarios from "./componentes/Usuarios/ListarUsuarios";
+import CadastrarUsuarios from "./componentes/Usuarios/CadastrarUsuarios";
+import EditarUsuarios from "./componentes/Usuarios/EditarUsuarios";
+import Sacola from "./componentes/Usuarios/sacola";
+import logo from './assets/logo.png';
+import CadastrarUsuario from "./componentes/Usuarios/CadastrarUsuarios";
 
 const PaginaNaoEncontrada = () => (
   <div className="text-center py-5">
@@ -18,12 +19,67 @@ const PaginaNaoEncontrada = () => (
   </div>
 );
 
+const Carrinho = ({ onFechar }) => (
+  <div style={{
+    position: 'fixed',
+    top: '100px',
+    right: '20px',
+    width: '300px',
+    height: '100%',
+    backgroundColor: 'white',
+    border: '1px solid #ccc',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+    zIndex: 1000,
+    borderRadius: '8px',
+    display: 'flex',
+    flexDirection: 'column',
+  }}>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: '#E7D0D0',
+      color: '#9D6155',
+      padding: '25px',
+      fontSize: '30px',
+      fontWeight: 'bold',
+      borderTopLeftRadius: '8px',
+      borderTopRightRadius: '8px',
+    }}>
+      <span>Minha Sacola</span>
+      <button
+        onClick={onFechar}
+        aria-label="Fechar sacola"
+        style={{
+          background: 'transparent',
+          border: 'none',
+          fontSize: '24px',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          color: '#9D6155',
+          lineHeight: '1',
+        }}
+      >
+        ×
+      </button>
+    </div>
+    <p style={{ padding: '25px' }}>Aqui ficam os itens adicionados.</p>
+  </div>
+);
+
 const App = () => {
   const location = useLocation();
   const navegar = useNavigate();
 
   const sair = () => {
     navegar("/");
+  };
+
+  // Estado e função declarados apenas aqui dentro
+  const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+
+  const toggleCarrinho = () => {
+    setCarrinhoAberto(!carrinhoAberto);
   };
 
   return (
@@ -44,31 +100,52 @@ const App = () => {
               </div>
             </div>
 
-            {/* Remova ou defina setShowLogin se quiser usar */}
-            {/* <i className="fa-regular fa-user" onClick={() => setShowLogin(true)}></i> */}
-                      <button className="btn-sacola" aria-label="Adicionar à sacola">
-                        <FiShoppingBag size={24} />
-                      </button>
-                      <button className="btn-curtir" aria-label="Curtir">
-                        <FaHeart size={24} color="red" />
-                      </button>
-                  <Link to="/login">
-                  <button className="btn-pagina" aria-label="Adicionar à sacola">Ir para Login</button>
-                        <FiShoppingBag size={24} />
-                  </Link>
+            <Link to="/login">
+              <button
+                className="btn-login"
+                style={{
+                  borderRadius: '100%',
+                  border: '2px solid #9D6155',
+                  padding: '8px 8px',
+                  backgroundColor: '#fff',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  cursor: 'pointer',
+                }}
+                aria-label="Ir para Login"
+              >
+                <FiUser  size={24} />
+              </button>
+            </Link>
 
-                  <Link to="/sacola">
-                 <button>Ir para Sacola</button>
-                  </Link> 
+            <button
+              className="btn-sacola"
+              onClick={toggleCarrinho}
+              aria-label={carrinhoAberto ? "Fechar carrinho" : "Abrir carrinho"}
+              style={{
+                borderRadius: '100%',
+                border: '2px solid #9D6155',
+                padding: '8px 8px',
+                backgroundColor: '#fff',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                marginLeft: '10px',
+              }}
+            >
+              <FiShoppingBag size={24} />
+            </button>
 
-            <i className="fa-solid fa-bag-shopping"></i>
+            {carrinhoAberto && <Carrinho onFechar={toggleCarrinho} />}
           </div>
         </header>
 
+
         <div className="nav-docabecalho">
           <nav>
-            {/* Para âncoras internas, use <a href="#inicio"> */}
-            <a href="#inicio" className="active">Início</a>
+            <a href="/" className="active">Início</a>
 
             <div className="modern-dropdown">
               <a href="#cardapio">
@@ -84,7 +161,6 @@ const App = () => {
               </div>
             </div>
 
-            {/* Continue usando <a> para âncoras internas */}
             <div className="modern-dropdown">
               <a href="#cardapio">
                 Categorias
@@ -145,15 +221,43 @@ const App = () => {
         <Routes>
           <Route path="/" element={<ConfeitariaDoGatinho />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<CadastrarUsuario />} />         
-          <Route path="/usuarios" element={<ListarUsuarios />} />
+          <Route path="/sacola" element={<Sacola />} />
+          <Route path="/cadastro" element={<CadastrarUsuario />} />
+          <Route path="/usuarios/listar" element={<ListarUsuarios />} />
           <Route path="/usuarios/cadastrar" element={<CadastrarUsuarios />} />
           <Route path="/usuarios/editar/:id" element={<EditarUsuarios />} />
           <Route path="*" element={<PaginaNaoEncontrada />} />
         </Routes>
       </div>
+
+      <footer>
+        <div className="container">
+          <div className="footer-logo">
+            <div className="logo">
+              <div className="logo-text" style={{ color: 'white' }}>
+                Horário de funcionamento: De 2ª a sábado das 7:30hs ás 18:30hs
+                Em feriados e de domingo das 7h ás 14h
+              </div>
+              <div className="logo-text" style={{ color: 'white' }}>
+                Endereço: R. Ari Barroso, 305 - Pres. Altino, Osasco - SP, 06216-901
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-links">
+            <a href="#inicio">Início</a>
+            <a href="#cardapio">Cardápio</a>
+            <a href="#contato">Contato</a>
+            <a href="#termosdeuso">Termos de Uso</a>
+            <a href="#politicadeprivacidade">Política de Privacidade</a>
+          </div>
+
+          <p className="copyright">© 2025 Três Estações. Todos os direitos reservados.</p>
+        </div>
+      </footer>
     </>
   );
 };
 
 export default App;
+
